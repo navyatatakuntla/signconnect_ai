@@ -20,6 +20,8 @@ backend/database/*.db
 Thumbs.db
 *.log
 scratch/
+.env
+*.env
 
 # Raw Datasets & Large Archives (>100MB not needed in production container)
 backend/dataset/raw/

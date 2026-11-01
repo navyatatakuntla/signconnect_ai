@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignConnect AI — Indian Sign Language Recognition</title>
+  <meta name="description" content="Web-based assistant that recognizes supported Indian Sign Language hand signs from your webcam, builds text, and speaks it aloud.">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-layout="public" data-page="home">
+  <div id="site-header"></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Turn Indian Sign Language hand signs into <span>text and speech</span></h1>
+          <p class="lead">SignConnect AI watches your webcam, recognizes supported hand signs with a trained machine learning model, helps you build sentences, and reads them out loud.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="recognize.html"><i data-icon="camera"></i> Start Recognition</a>
+            <a class="btn btn-outline btn-lg" href="text-to-sign.html"><i data-icon="hand"></i> Text to Sign</a>
+            <a class="btn btn-ghost btn-lg" href="#how-it-works">See how it works</a>
+          </div>
+          <p class="hero-note">Version 1 supports alphabet (A–Z) hand signs, depending on the dataset used for training.</p>
+        </div>
+
+        <div class="hero-card" aria-hidden="true">
+          <div class="mock-cam">
+            <span class="tag">Live preview</span>
+            <i data-icon="hand"></i>
+          </div>
+          <div class="hero-flow">
+            <span class="chip">Webcam</span><span class="arrow">›</span>
+            <span class="chip">Landmarks</span><span class="arrow">›</span>
+            <span class="chip">Letter</span><span class="arrow">›</span>
+            <span class="chip">Speech</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Features</span>
+          <h2>Everything you need in one simple app</h2>
+          <p>Designed to be easy for anyone to use — no technical knowledge required.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card card-hover">
+            <div class="icon-badge"><i data-icon="camera"></i></div>
+            <h3>Live webcam recognition</h3>
+            <p>Show a supported sign to your camera and see the predicted letter in real time.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="icon-badge teal"><i data-icon="hand"></i></div>
+            <h3>Hand landmark detection</h3>
+            <p>MediaPipe finds 21 key points on your hand, which the model uses to recognize the sign.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="icon-badge"><i data-icon="shield"></i></div>
+            <h3>Stable, careful predictions</h3>
+            <p>Confidence checks and multi-frame agreement avoid random or repeated letters.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="icon-badge teal"><i data-icon="text"></i></div>
+            <h3>Sentence builder</h3>
+            <p>Add letters, spaces and corrections. Edit the text by hand whenever you need.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="icon-badge"><i data-icon="speaker"></i></div>
+            <h3>Text-to-speech</h3>
+            <p>Your browser reads the finished sentence aloud, only when you press Speak.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="icon-badge teal"><i data-icon="hand"></i></div>
+            <h3>Text & Speech to Sign</h3>
+            <p>Type text or speak with your mic to see genuine Indian Sign Language (ISL) hand signs playback.</p>
+          </article>
+          <article class="card card-hover">
+            <div class="icon-badge"><i data-icon="chart"></i></div>
+            <h3>Honest model evaluation</h3>
+            <p>See real accuracy, precision, recall, F1-score and the confusion matrix from training.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section-alt" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2>From a hand sign to spoken words</h2>
+          <p>Four simple steps happen behind the scenes.</p>
+        </div>
+        <div class="grid grid-4 steps">
+          <div class="card step">
+            <h3>Capture</h3>
+            <p>Your browser opens the webcam, with your permission, and sends small frames to the app.</p>
+          </div>
+          <div class="card step">
+            <h3>Detect</h3>
+            <p>MediaPipe locates your hand and extracts 21 landmarks (x, y, z), giving 63 numbers.</p>
+          </div>
+          <div class="card step">
+            <h3>Recognize</h3>
+            <p>A trained model predicts the sign. Low-confidence results are ignored.</p>
+          </div>
+          <div class="card step">
+            <h3>Speak</h3>
+            <p>You confirm letters, build a sentence, and the browser speaks it.</p>
+          </div>
+        </div>
+
+        <div class="notice notice-warn" style="margin-top:32px" role="note">
+          <i data-icon="alert"></i>
+          <p><strong>Important limitation:</strong> alphabet recognition is not full Indian Sign Language translation. Real sign language also uses hand movement, facial expressions, body posture and grammar, which version 1 does not cover.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inspirational Quote -->
+    <section class="section section-alt">
+      <div class="container center" style="max-width:720px">
+        <blockquote style="border-left:4px solid var(--blue-600);padding:20px 28px;margin:0;text-align:left;background:var(--surface-2,#1e293b);border-radius:12px">
+          <p style="font-size:1.15rem;font-style:italic;line-height:1.7;margin:0 0 12px;color:var(--text-1,#e2e8f0)">&ldquo;Communication is not limited by words; it grows when we learn to understand one another.&rdquo;</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container center">
+        <h2>Ready to try it?</h2>
+        <p>Create a free account to save your recognition history, or try the recognition page right away.</p>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-primary btn-lg" href="register.html">Create account</a>
+          <a class="btn btn-outline btn-lg" href="recognize.html">Start Recognition</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/common.js"></script>
+</body>
+</html>

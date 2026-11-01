@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text to Sign — SignConnect AI</title>
+  <meta name="description" content="Convert English text and spoken speech into Indian Sign Language (ISL) hand signs in real time.">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-layout="public" data-page="text-to-sign">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>Text & Speech to Sign Language</h1>
+      <p class="muted">Type text or speak into your microphone to view genuine Indian Sign Language (ISL) hand signs sequentially.</p>
+    </div>
+
+    <div class="page-body">
+      <div id="tts-alert" hidden style="margin-bottom:16px"></div>
+
+      <div class="rec-grid">
+        <!-- Left Column: Text & Speech Input -->
+        <section>
+          <div class="card">
+            <h3>Text & Speech Input</h3>
+            <p class="small muted" style="margin-top:-6px;margin-bottom:12px">Enter English words or use the microphone to dictate.</p>
+
+            <label class="sr-only" for="text-input">Text to translate</label>
+            <textarea class="textarea sentence-box" id="text-input" rows="4" placeholder="Type letters, words or a sentence (e.g. HELLO INDIA)..." spellcheck="false" style="font-size:1.1rem;resize:vertical;min-height:110px"></textarea>
+
+            <div class="btn-row" style="margin-top:12px;align-items:center">
+              <button class="btn btn-primary" id="translate-btn"><i data-icon="play"></i> Convert to Signs</button>
+              <button class="btn btn-outline" id="mic-btn" type="button" title="Speak via microphone"><i data-icon="mic"></i> <span id="mic-btn-text">Speak</span></button>
+              <button class="btn btn-outline btn-sm" id="clear-btn" type="button" style="margin-left:auto"><i data-icon="trash"></i> Clear</button>
+            </div>
+
+            <!-- Quick Samples -->
+            <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border-color,#e2e8f0)">
+              <span class="small muted" style="display:inline-block;margin-right:8px;font-weight:500">Quick samples:</span>
+              <div class="btn-row" style="display:inline-flex;flex-wrap:wrap;gap:6px">
+                <button class="btn btn-ghost btn-sm sample-btn" type="button" data-sample="HELLO">HELLO</button>
+                <button class="btn btn-ghost btn-sm sample-btn" type="button" data-sample="INDIA">INDIA</button>
+                <button class="btn btn-ghost btn-sm sample-btn" type="button" data-sample="SIGN">SIGN</button>
+                <button class="btn btn-ghost btn-sm sample-btn" type="button" data-sample="WELCOME">WELCOME</button>
+              </div>
+            </div>
+
+            <p class="field-hint" style="margin-top:12px">
+              Supported characters: A–Z (case-insensitive). Spaces between words are represented as pauses. Numbers or unsupported symbols are skipped safely.
+            </p>
+          </div>
+        </section>
+
+        <!-- Right Column: Sign Display & Playback Controls -->
+        <section>
+          <div class="card tts-display-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+              <h3 style="margin:0">ISL Sign Display</h3>
+              <span class="tag" id="char-counter">Sign 0 of 0</span>
+            </div>
+
+            <!-- Visual Sign Viewport -->
+            <div class="tts-viewport" id="tts-viewport">
+              <!-- Active Sign Image -->
+              <div id="sign-image-wrapper" class="sign-image-box">
+                <img id="sign-image" src="assets/images/isl_alphabet/A.jpg" alt="ISL Sign" width="240" height="240">
+                <div class="current-letter-overlay" id="current-letter-overlay">
+                  <span class="overlay-label">Alphabet</span>
+                  <span class="overlay-char" id="overlay-char">A</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Playback Controls -->
+            <div class="tts-controls" style="margin-top:16px">
+              <div class="btn-row" style="justify-content:center;gap:10px">
+                <button class="btn btn-outline" id="prev-btn" title="Previous sign (Left Arrow)" disabled><i data-icon="skipBack"></i></button>
+                <button class="btn btn-primary btn-lg" id="play-pause-btn" style="min-width:120px" disabled><i data-icon="play"></i> <span id="play-btn-text">Play</span></button>
+                <button class="btn btn-outline" id="next-btn" title="Next sign (Right Arrow)" disabled><i data-icon="skipForward"></i></button>
+                <button class="btn btn-outline" id="restart-btn" title="Restart from beginning" disabled><i data-icon="refresh"></i></button>
+              </div>
+
+              <!-- Speed and Loop Controls -->
+              <div class="tts-options-grid" style="margin-top:16px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+                <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:200px">
+                  <label for="speed-slider" class="small" style="font-weight:500;white-space:nowrap">Speed:</label>
+                  <input type="range" id="speed-slider" min="400" max="2500" step="100" value="1000" style="flex:1;cursor:pointer">
+                  <span id="speed-label" class="small muted" style="font-family:monospace;min-width:48px">1.0s</span>
+                </div>
+
+                <label class="toggle" style="margin:0;font-size:0.9rem">
+                  <input type="checkbox" id="loop-toggle">
+                  Loop playback
+                </label>
+              </div>
+            </div>
+
+            <!-- Sentence Sequence Timeline / Character Chips -->
+            <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-color,#e2e8f0)">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <span class="small" style="font-weight:600">Sentence Sequence:</span>
+                <span class="small muted">Click any letter to jump</span>
+              </div>
+              <div class="sequence-chips-container" id="sequence-chips">
+                <span class="small muted" style="padding:6px 0">Characters will appear here...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Expandable A–Z ISL Alphabet Reference Gallery -->
+      <section class="card" style="margin-top:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" id="gallery-toggle-header">
+          <div>
+            <h3 style="margin:0">Indian Sign Language (ISL) Alphabet Reference (A–Z)</h3>
+            <p class="small muted" style="margin:2px 0 0">Click any letter below to view its genuine hand sign.</p>
+          </div>
+          <button class="btn btn-ghost btn-sm" id="gallery-toggle-btn" type="button">Hide Reference</button>
+        </div>
+
+        <div id="alphabet-gallery-body" style="margin-top:16px">
+          <div class="alphabet-grid" id="alphabet-grid">
+            <!-- Populated via JavaScript for A-Z -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/text-to-sign.js"></script>
+</body>
+</html>

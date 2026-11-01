@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <rect width="240" height="240" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="40" y="110" width="160" height="20" rx="4" fill="#94a3b8"/>
+  <path d="M40 100 v30 M200 100 v30" stroke="#64748b" stroke-width="3" stroke-linecap="round"/>
+  <text x="120" y="165" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#64748b" text-anchor="middle">WORD SPACE</text>
+  <text x="120" y="185" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Brief Pause</text>
+</svg>

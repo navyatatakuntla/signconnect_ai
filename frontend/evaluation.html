@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model Evaluation — SignConnect AI</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-layout="app" data-page="evaluation">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>Model evaluation</h1>
+      <p class="muted">Every number on this page is read from the evaluation output saved during training.</p>
+    </div>
+
+    <div class="page-body" id="eval-root">
+      <div id="eval-alert" hidden style="margin-bottom:16px"></div>
+
+      <!-- Shown when no evaluation exists yet -->
+      <div class="card empty" id="eval-empty" hidden>
+        <i data-icon="chart"></i>
+        <h3>No evaluation results yet</h3>
+        <p>Train the model locally and the results will appear here automatically.</p>
+      </div>
+
+      <div id="eval-content" hidden>
+        <h3>Dataset</h3>
+        <div class="grid grid-4" style="margin-bottom:24px">
+          <div class="card metric-tile"><div class="value" id="n-train">—</div><div class="label">Training samples</div></div>
+          <div class="card metric-tile"><div class="value" id="n-val">—</div><div class="label">Validation samples</div></div>
+          <div class="card metric-tile"><div class="value" id="n-test">—</div><div class="label">Test samples</div></div>
+          <div class="card metric-tile"><div class="value" id="n-classes">—</div><div class="label">Supported classes</div></div>
+        </div>
+
+        <h3>Test-set performance</h3>
+        <div class="grid grid-4" style="margin-bottom:8px">
+          <div class="card metric-tile"><div class="value" id="m-acc">—</div><div class="label">Accuracy</div></div>
+          <div class="card metric-tile"><div class="value" id="m-prec">—</div><div class="label">Precision (macro)</div></div>
+          <div class="card metric-tile"><div class="value" id="m-rec">—</div><div class="label">Recall (macro)</div></div>
+          <div class="card metric-tile"><div class="value" id="m-f1">—</div><div class="label">F1-score (macro)</div></div>
+        </div>
+        <p class="small muted" style="margin-bottom:24px">Offline test-set results can be higher than real webcam performance because of lighting, background and signer differences.</p>
+
+        <div class="grid grid-2" style="margin-bottom:24px;align-items:start">
+          <section class="card">
+            <h3>Model information</h3>
+            <dl class="kv" id="model-info"></dl>
+          </section>
+          <section class="card">
+            <h3>Supported classes</h3>
+            <div id="class-list" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+          </section>
+        </div>
+
+        <h3>Confusion matrix</h3>
+        <p class="small muted">Rows are the true labels, columns are the predicted labels. Darker cells have more samples.</p>
+        <div class="cm-wrap" id="cm" style="margin-bottom:24px"></div>
+
+        <h3>Classification report</h3>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Class</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">F1-score</th><th class="num">Support</th></tr></thead>
+            <tbody id="report-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/evaluation.js"></script>
+</body>
+</html>

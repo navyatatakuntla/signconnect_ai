@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — SignConnect AI</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-layout="app" data-page="dashboard">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <div class="page-head" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+      <div>
+        <h1 id="welcome">Welcome</h1>
+        <p class="muted" style="margin:0">Here is a summary of your recognition activity.</p>
+      </div>
+      <a class="btn btn-primary btn-lg" href="recognize.html"><i data-icon="camera"></i> Start Recognition</a>
+    </div>
+
+    <div class="page-body">
+      <div id="dash-alert" hidden style="margin-bottom:16px"></div>
+
+      <div class="grid grid-3">
+        <div class="card stat-card">
+          <div class="icon-badge" style="margin:0"><i data-icon="clock"></i></div>
+          <div><div class="value" id="stat-sessions">—</div><div class="label">Recognition sessions</div></div>
+        </div>
+        <div class="card stat-card">
+          <div class="icon-badge teal" style="margin:0"><i data-icon="text"></i></div>
+          <div><div class="value" id="stat-signs">—</div><div class="label">Recognized signs (letters saved)</div></div>
+        </div>
+        <div class="card stat-card">
+          <div class="icon-badge" style="margin:0"><i data-icon="users"></i></div>
+          <div><div class="value" id="stat-account" style="font-size:1.1rem;word-break:break-word">—</div><div class="label">Signed in as</div></div>
+        </div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:2fr 1fr;margin-top:20px" id="dash-grid">
+        <section class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <h3 style="margin:0">Recent history</h3>
+            <a href="history.html" class="small">View all</a>
+          </div>
+          <div id="recent-body"></div>
+        </section>
+
+        <aside style="display:grid;gap:20px;align-content:start">
+          <section class="card">
+            <h3>Quick navigation</h3>
+            <div style="display:grid;gap:8px">
+              <a class="btn btn-outline" href="recognize.html">Live recognition</a>
+              <a class="btn btn-outline" href="text-to-sign.html">Text to Sign</a>
+              <a class="btn btn-outline" href="history.html">Recognition history</a>
+              <a class="btn btn-outline" href="evaluation.html">Model evaluation</a>
+            </div>
+          </section>
+
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/forms.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <style>@media (max-width: 860px) { #dash-grid { grid-template-columns: 1fr !important; } }</style>
+</body>
+</html>

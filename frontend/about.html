@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — SignConnect AI</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-layout="public" data-page="about">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="section" style="padding-bottom:24px">
+      <div class="container" style="max-width:820px">
+        <span class="eyebrow">About the project</span>
+        <h1>SignConnect AI</h1>
+        <p class="lead" style="font-size:1.1rem">AI-Based Indian Sign Language Recognition and Communication Assistance System.</p>
+        <p>SignConnect AI is a web application that helps bridge the communication gap between people who use supported Indian Sign Language (ISL) hand signs and people who do not understand them. It uses a webcam, hand landmark detection and a trained machine learning model to turn signs into readable English text, which can then be spoken aloud.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:24px">
+      <div class="container">
+        <div class="grid grid-2">
+          <article class="card">
+            <h3>Objectives</h3>
+            <ul class="tips">
+              <li>Recognize supported ISL alphabet signs from a live webcam.</li>
+              <li>Build words and sentences from confirmed letters.</li>
+              <li>Convert the sentence to speech in the browser.</li>
+              <li>Keep a private recognition history for each user.</li>
+              <li>Report real, honest model evaluation results.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Privacy</h3>
+            <p>Camera frames are used only to detect a hand and predict a sign. They are not stored. Only the text you choose to save, with its date and duration, is kept in your history.</p>
+          </article>
+          <article class="card">
+            <h3>Known limitations</h3>
+            <ul class="tips">
+              <li>Alphabet recognition is not full sign language translation.</li>
+              <li>Signs that need movement, two hands, facial expression or body posture are not covered in version 1.</li>
+              <li>Accuracy depends on lighting, background, camera quality and the training dataset.</li>
+              <li>Results on a dataset can differ from real webcam performance.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="section" id="feedback">
+      <div class="container" style="max-width:640px">
+        <div class="section-head" style="margin-bottom:24px">
+          <span class="eyebrow">Feedback</span>
+          <h2>Share your feedback</h2>
+          <p>Found a wrong prediction or have an idea? Send us your feedback.</p>
+        </div>
+        <form id="feedback-form" class="card" novalidate>
+          <div id="fb-alert" class="form-alert" hidden></div>
+          <div class="field">
+            <label for="fb-name">Name</label>
+            <input class="input" id="fb-name" name="name" autocomplete="name" maxlength="100">
+            <div class="field-error" data-error-for="name"></div>
+          </div>
+          <div class="field">
+            <label for="fb-feedback">Feedback</label>
+            <textarea class="textarea" id="fb-feedback" name="feedback" maxlength="1000" rows="5" placeholder="Write your feedback here…"></textarea>
+            <div class="field-error" data-error-for="feedback"></div>
+          </div>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-alt" id="contact">
+      <div class="container" style="max-width:640px">
+        <div class="section-head" style="margin-bottom:24px">
+          <span class="eyebrow">Contact</span>
+          <h2>Get in touch</h2>
+          <p>You can reach us directly using the details below.</p>
+        </div>
+        <div class="card">
+          <div style="display:grid;gap:16px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div class="icon-badge" style="margin:0;flex-shrink:0"><i data-icon="inbox"></i></div>
+              <div>
+                <div class="small muted" style="margin-bottom:4px">Email</div>
+                <a href="mailto:navyatatakuntla99@gmail.com" style="font-weight:500;word-break:break-all">navyatatakuntla99@gmail.com</a>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <div class="icon-badge teal" style="margin:0;flex-shrink:0"><i data-icon="speaker"></i></div>
+              <div>
+                <div class="small muted" style="margin-bottom:4px">Phone</div>
+                <a href="tel:+919618693109" style="font-weight:500">9618693109</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/forms.js"></script>
+  <script src="assets/js/feedback.js"></script>
+</body>
+</html>

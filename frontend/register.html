@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create account — SignConnect AI</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-layout="public" data-page="register">
+  <div id="site-header"></div>
+
+  <main class="auth-wrap">
+    <div class="card auth-card">
+      <h1>Create your account</h1>
+      <p class="muted">It takes less than a minute.</p>
+
+      <form id="register-form" novalidate>
+        <div id="register-alert" class="form-alert" hidden></div>
+
+        <div class="field">
+          <label for="full_name">Full name</label>
+          <input class="input" id="full_name" name="full_name" autocomplete="name" maxlength="100" required>
+          <div class="field-error" data-error-for="full_name"></div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          <div class="field-error" data-error-for="email"></div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input class="input" id="password" name="password" type="password" autocomplete="new-password" required>
+            <button type="button" class="pw-toggle" data-target="password" aria-pressed="false">Show</button>
+          </div>
+          <div class="strength" aria-hidden="true"><span id="strength-bar"></span></div>
+          <div class="field-hint">At least 8 characters, with letters and a number.</div>
+          <div class="field-error" data-error-for="password"></div>
+        </div>
+
+        <div class="field">
+          <label for="confirm_password">Confirm password</label>
+          <div class="pw-wrap">
+            <input class="input" id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" required>
+            <button type="button" class="pw-toggle" data-target="confirm_password" aria-pressed="false">Show</button>
+          </div>
+          <div class="field-error" data-error-for="confirm_password"></div>
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg" type="submit">Create account</button>
+      </form>
+
+      <p class="auth-foot">Already registered? <a href="login.html">Log in</a></p>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/forms.js"></script>
+  <script src="assets/js/register.js"></script>
+</body>
+</html>

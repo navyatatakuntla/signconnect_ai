@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>History — SignConnect AI</title>
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-layout="app" data-page="history">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <div class="page-head" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+      <div>
+        <h1>Recognition history</h1>
+        <p class="muted" style="margin:0">Only sessions you saved are listed here. They are visible only to you.</p>
+      </div>
+      <button class="btn btn-outline" id="clear-btn" disabled><i data-icon="trash"></i> Clear history</button>
+    </div>
+
+    <div class="page-body">
+      <div id="hist-alert" hidden style="margin-bottom:16px"></div>
+      <div id="hist-body"></div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/history.js"></script>
+</body>
+</html>

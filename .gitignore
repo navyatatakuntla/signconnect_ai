@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Database
+*.db
+backend/database/*.db
+
+# Temporary & OS files
+.DS_Store
+Thumbs.db
+*.log
+scratch/
+
+# Raw Datasets & Large Archives (>100MB not needed in production container)
+backend/dataset/raw/
+backend/dataset/processed/
+*.zip
+*.tar.gz
+

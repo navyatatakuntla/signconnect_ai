@@ -3,9 +3,12 @@
  * Edit this file only. Every page loads it first.
  */
 window.SC_CONFIG = {
-  // Where the Flask backend runs. If served from port 5000, uses same-origin ("").
-  // If served from a live server (port 5500, etc.), uses http://127.0.0.1:5000.
-  API_BASE: (window.location.port === "5000" || window.location.port === "") ? "" : "http://127.0.0.1:5000",
+  // When running in production (e.g. onrender.com) or served directly by Flask, uses same-origin ("").
+  // When running locally on a secondary dev port (e.g. Live Server on 5500), connects to local backend.
+  API_BASE: (
+    window.location.hostname !== "localhost" && 
+    window.location.hostname !== "127.0.0.1"
+  ) ? "" : ((window.location.port === "5000" || window.location.port === "") ? "" : "http://127.0.0.1:5000"),
 
   // Set to false for full real backend mode
   UI_PREVIEW: false,

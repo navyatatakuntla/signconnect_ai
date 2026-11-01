@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: signconnect-ai
+    runtime: python
+    buildCommand: pip install --upgrade pip && pip install -r backend/requirements.txt
+    startCommand: gunicorn --chdir backend "app:create_app()" --bind 0.0.0.0:$PORT --workers 2 --threads 2 --timeout 120
+    healthCheckPath: /api/health
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FEEDBACK_RECIPIENT
+        value: navyatatakuntla99@gmail.com
+      - key: MIN_CONFIDENCE_THRESHOLD
+        value: "0.25"
+      - key: STABILITY_WINDOW
+        value: "2"

@@ -3,13 +3,14 @@ from pathlib import Path
 from flask import Flask, jsonify, request, send_from_directory, redirect
 from flask_cors import CORS
 
-from config import Config
+from config import Config, BASE_DIR
 from database.db import close_db, init_db
 from routes import (
     auth_bp, recognition_bp, history_bp,
     dashboard_bp, evaluation_bp, feedback_bp
 )
 from utils.security import validate_csrf_token
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
@@ -19,6 +20,9 @@ def create_app(test_config=None):
 
     if test_config:
         app.config.update(test_config)
+
+    # Apply ProxyFix middleware for reverse proxies (Render, NGINX)
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
     # Enable CORS for frontend clients (e.g. Live Server on 5500)
     CORS(
@@ -79,6 +83,19 @@ def create_app(test_config=None):
             return send_from_directory(FRONTEND_DIR, f"{filename}.html")
         return jsonify({"error": "Not Found"}), 404
 
+    # Dedicated Health Check Endpoint for Render / Load Balancers
+    @app.route("/api/health", methods=["GET"])
+    def health_check():
+        model_exists = Config.MODEL_PATH.exists()
+        landmarker_exists = (BASE_DIR / "models" / "hand_landmarker.task").exists()
+        return jsonify({
+            "status": "healthy",
+            "service": "SignConnect AI",
+            "model_ready": model_exists,
+            "landmarker_ready": landmarker_exists,
+            "version": "1.0.0"
+        }), 200
+
     # Central Error Handlers
     @app.errorhandler(404)
     def not_found(e):
@@ -92,10 +109,16 @@ def create_app(test_config=None):
 
     return app
 
+# WSGI Application entry point for Gunicorn (e.g. gunicorn "app:application")
+application = create_app()
+app = application  # Alias for conventions expecting app:app
+
 if __name__ == "__main__":
-    app = create_app()
+    port = int(os.environ.get("PORT", 5000))
+    host = os.environ.get("HOST", "0.0.0.0" if os.environ.get("RENDER") else "127.0.0.1")
+    debug = os.environ.get("FLASK_ENV") != "production" and not os.environ.get("RENDER")
     print("=" * 60)
-    print("  SignConnect AI Flask Backend Server Running")
-    print("  Local URL: http://127.0.0.1:5000")
+    print("  SignConnect AI Flask Server Running")
+    print(f"  URL: http://{host}:{port}")
     print("=" * 60)
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    application.run(host=host, port=port, debug=debug)

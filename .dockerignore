@@ -1,0 +1,54 @@
+# ==============================================================================
+# SignConnect AI - Docker Ignore File
+# Excludes unnecessary build artifacts, raw datasets, caches, and archives
+# ==============================================================================
+
+# Version Control
+.git/
+.gitignore
+.gitattributes
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# Environment Variables & Secrets (Keep template example)
+.env
+*.env
+!.env.example
+
+# Large Dataset Archives & Project Zips
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+SignConnect_AI_Complete_Project.zip
+backend/dataset/raw/isl_repo/*.zip
+
+# Raw Image Training Data (>350MB, not required for production inference)
+# Models are pre-trained and preserved in backend/models/
+backend/dataset/raw/isl_repo/[a-z]/
+backend/dataset/raw/isl_repo/[A-Z]/
+
+# OS & IDE Configuration
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary Files, Logs & Scratch
+*.log
+scratch/
+backend/tests/*.db
+

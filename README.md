@@ -72,3 +72,21 @@ py -3.13 backend/app.py
 ```
 Open **`http://127.0.0.1:5000`** in Google Chrome or Microsoft Edge.
 All frontend pages are served directly by the backend!
+
+---
+
+## Production Deployment with Docker (Render)
+
+This repository includes a production-ready `Dockerfile` with all required Linux dependencies for MediaPipe (`libGLESv2.so.2`, `libegl1`, `libgl1`, `libglib2.0-0`), Gunicorn WSGI configuration, dynamic `$PORT` binding, and health checks.
+
+### Run with Docker Locally
+```bash
+docker build -t signconnect-ai .
+docker run -p 5000:5000 signconnect-ai
+```
+Visit `http://localhost:5000` or check the health check endpoint at `http://localhost:5000/api/health`.
+
+### Deploy to Render
+1. Push repository changes to GitHub / GitLab.
+2. In Render, select **New +** > **Blueprint** (uses `render.yaml`) or **Web Service** > **Docker**.
+3. Render automatically builds the `Dockerfile`, handles MediaPipe Linux dependencies, and injects `$PORT`.
